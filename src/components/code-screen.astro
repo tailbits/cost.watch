@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  [key: string]: any;
+}
+
+const { class: className, title = "shell", ...props } = Astro.props;
+const logos = {
+  shell: '/images/logos/shell.svg',
+  claude: '/images/logos/claude.svg',
+}
+
+const logo = logos[title as keyof typeof logos];
+---
+
+<div class:list={["flex flex-col", className]} {...props}>
+  <div class="bg-gray-800 text-white p-4 font-mono flex gap-1 items-center">{logo ? <img src={logo} class="mr-2 w-4 h-4" /> :null}<span>{title}</span></div>
+  <pre class="flex justify-between p-4 bg-gray-700 text-white font-mono whitespace-pre">
+    <code><slot /></code>
+  </pre>
+</div>

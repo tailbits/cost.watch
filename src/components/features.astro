@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-icon/components'
+
+// icons from: https://icon-sets.iconify.design/streamline-ultimate-color/page-6.html
+
+const features =[
+  {
+    "icon": "streamline-ultimate-color:monetization-tablet-dollar",
+    "title": "Real-time cost visibility",
+    "description": "See spend as it happens by mapping AWS usage metrics directly to costs. No more 24h billing lag."
+  },
+  {
+    "icon":"streamline-ultimate-color:app-window-pie-chart",
+    "title": "Interactive dashboards",
+    "description": "Explore trends, projections, and anomalies with a fast ClickHouse-powered dashboard."
+  },
+  {
+    "icon":"streamline-ultimate-color:alarm-bell-ring",
+    "title": "Smart alerts",
+    "description": "Define thresholds and get notified instantly via Slack/webhooks before costs spiral."
+  },
+  {
+    "icon": "streamline-ultimate-color:charger-1",
+    "title": "API-first design",
+    "description": "Query, integrate, and extend cost data programmatically with a simple API."
+  },
+  {
+    "icon": "streamline-ultimate-color:shield-lock",
+    "title": "AWS native",
+    "description": "Uses the standard AWS SDK credential chain (SSO, env vars, config files) — no extra setup."
+  },
+  {
+    "icon": "streamline-ultimate-color:space-rocket-earth",
+    "title": "Easy to run anywhere",
+    "description": "Start in minutes with Docker, or deploy serverless with AWS Lambda support."
+  }
+]
+---
+
+<section id="features" class="py-20 sm:py-32 bg-gray-100">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl sm:text-center">
+      <h2 class="text-3xl font-medium tracking-tight text-gray-900">Everything you need for real-time cost control
+      </h2>
+      <p class="mt-2 text-lg text-gray-600">CostWatch turns raw usage metrics into instant cost insights with dashboards, alerts, and APIs — so you stay in control before costs spiral.
+      </p>
+    </div>
+    <ul role="list" class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3">
+      {features.map((feature) => (
+
+      <li class="rounded-2xl border border-gray-200 p-8">
+        <div class="bg-gray-100 w-12 h-12 rounded-full flex items-center justify-center">
+          {feature.icon ? <Icon name={feature.icon} class="w-8 h-8" /> : ''}
+        </div>
+        <h3 class="mt-6 font-semibold text-gray-900">{feature.title}
+        </h3>
+        <p class="mt-2 text-gray-700">{feature.description}
+        </p>
+      </li>
+      ))}
+    </ul>
+  </div>
+</section>

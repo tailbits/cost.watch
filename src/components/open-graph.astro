@@ -1,0 +1,69 @@
+---
+const PUBLIC_URL = import.meta.env.PUBLIC_URL || '';
+
+function urlJoin(...segments: string[]) {
+  return segments
+    .map((s) => s.replace(/^\/+|\/+$/g, ''))
+    .filter(Boolean)
+    .join('/');
+}
+
+const extMimeMap = {
+  png: 'image/png',
+  jpg: 'image/jpg',
+};
+
+const defaults = {
+  color: '#6e56cf',
+  icons: [],
+};
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string[];
+}
+
+const { title, description, keywords = [] } = Astro.props;
+const url = urlJoin(PUBLIC_URL, Astro.url.pathname);
+const image = urlJoin(PUBLIC_URL, '/social.png');
+const sitename = new URL(PUBLIC_URL).hostname;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="msapplication-TileColor" content={defaults.color} />
+<meta name="theme-color" content={defaults.color} />
+<meta name="keywords" content={keywords.join(', ')} />
+<link rel="canonical" href={url} />
+
+{defaults.icons.flatMap((href) => {
+  const [ext, size] = href.split(/[\/\-.]/).reverse();
+  return ['icon', 'apple-touch-icon'].map((rel) => (
+  <link rel={rel} type={extMimeMap[ext as keyof typeof extMimeMap] || extMimeMap.png} sizes={`${size}x${size}`}
+        href={href} />
+    ));
+  })}
+
+<meta itemprop="name" content={title} />
+<meta itemprop="description" content={description} />
+<meta itemprop="image" content={image} />
+<meta property="image:alt" content={description} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:site_name" content={sitename} />
+<meta property="og:image" content={image} />
+<meta property="og:image:alt" content={description} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="670" />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:url" content={url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={title} />

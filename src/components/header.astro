@@ -1,0 +1,25 @@
+---
+import Container from './container.astro';
+import Logo from './logo-text.astro';
+import NavLinks from './nav-links.astro';
+
+const navItems = [
+  { label: 'GitHub', href: 'https://github.com/tailbits/costwatch' },
+  { label: 'Support', href: 'https://x.com/intent/post?text=Hi%20costwatch,%20' },
+];
+
+---
+
+<header>
+  <nav>
+    <Container class="relative z-50 flex justify-between py-8">
+      <div class="relative z-10 flex items-center gap-16">
+        <a href="/" aria-label="Home">
+          <Logo class="h-5 w-auto" />
+        </a>
+      <NavLinks links={navItems} />
+      </div>
+
+    </Container>
+  </nav>
+</header>
