@@ -1,10 +1,10 @@
-# CostWatch
+# Cost.watch
 
-Source for https://cost.watch
+Source for https://Cost.watch
 
 ```sh
-git clone git@github.com:tailbits/cost.watch.git
-cd cost.watch
+git clone git@github.com:tailbits/Cost.watch.git
+cd Cost.watch
 npm i
 npm run dev
 ```
